@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>PL/SQL Code Examples</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+
+    <main>
+        <h3>Link to Selenium Downloads</h3>
+    <code>
+        <a href="https://www.selenium.dev/downloads/" target="_blank">Selenium Downloads</a>
+    </code>
+    <h3>Link to jar file for excel practical</h3>
+    <code>
+        <a href="https://jar-download.com/artifacts/net.sourceforge.jexcelapi/jxl/2.6.12/source-code" target="_blank">JExcelApi Source Code</a>
+    </code>
+        <h2>PRACTICAL 1 Manual Testing
+            <h2>Test Cases for Google.com - Manual Testing</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Test ID</th>
+                        <th>Test Scenario</th>
+                        <th>Test Steps</th>
+                        <th>Expected Results</th>
+                        <th>Pass/Fail</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Launch Google homepage</td>
+                        <td>1. Launch https://www.google.com from the following devices.<br>2. Web browsers like Chrome, Mozilla, Safari, etc.<br>3. From devices like tablets, mobile.<br>4. From windows OS and Linux OS</td>
+                        <td>https://www.google.com should redirect to the Google home page</td>
+                        <td>Pass</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Enter a word in the search text box</td>
+                        <td>1. Launch https://www.google.com from any web browser.<br>2. Enter the text 'Brazil' in the search text box.<br>3. Click the Search button</td>
+                        <td>1. On clicking the search button it should redirect the user to the search results<br>2. Search results should be relevant</td>
+                        <td>Pass</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Enter a sentence in the search textbox</td>
+                        <td>1. Launch https://www.google.com from any web browser.<br>2. Enter the text 'Who is Lewis Hamilton?' in the search text box.<br>3. Click the Search button</td>
+                        <td>1. On clicking the search button it should redirect the user to the search results<br>2. Search results should be relevant</td>
+                        <td>Pass</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Press enter from the textbox</td>
+                        <td>1. Launch https://www.google.com from any web browser.<br>2. Enter the text 'Ronaldo' in the search text box.<br>3. Click the Search button</td>
+                        <td>1. On pressing the Enter key, it should redirect the user to search results.<br>2. Search results should be relevant.</td>
+                        <td>Pass</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Speech recognition</td>
+                        <td>1. Launch https://www.google.com from any web browser.<br>2. Press the microphone icon in the Google text box. Start speaking valid input 'Who is Lewis Hamilton?'.<br>3. Press the Enter key</td>
+                        <td>1. On clicking the Enter button, it should redirect the user to search results.<br>2. Search results should be relevant.</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Invalid value in the search text box</td>
+                        <td>1. Launch https://www.google.com from any web browser.<br>2. Enter text special characters ‘@#$%^’ in the search text box.<br>3. Press the Enter key</td>
+                        <td>1. On pressing the Enter key, it should redirect the user to ‘did not match any documents’.</td>
+                        <td>Pass</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Sign in/sign out</td>
+                        <td>1. Launch https://www.google.com from any web browser from a desktop system.<br>2. Sign in with a Google account.<br>3. Search ‘What is a W16 Engine?’. Sign out.<br>4. Search ‘What is an apple’.</td>
+                        <td>Users should be able to search with and without sign-in.</td>
+                        <td>Pass</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Language</td>
+                        <td>1. Launch https://www.google.com from any web browser.<br>2. Click ‘Google offered in’</td>
+                        <td>It should reflect the language preference a user has provided in settings.</td>
+                        <td>Pass</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>I’m feeling lucky</td>
+                        <td>1. Launch https://www.google.com from any web browser.<br>2. Enter the text ‘What is F1?’ in the search text box.<br>3. Press the I’m Feeling Lucky key.</td>
+                        <td>It redirects you to https://www.google.com/doodles</td>
+                        <td>Pass</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Different categories of search result</td>
+                        <td>1. Launch https://www.google.com from any web browser.<br>2. Enter the text 'Who is Lewis Hamilton?’ in the search text box.<br>3. Press the Enter key.</td>
+                        <td>1. On pressing the Enter key, it should redirect the user to search results.<br>2. Users should be able to navigate between different categories located on top.<br>a. All<br>b. News<br>c. Image<br>d. Shopping<br>e. More<br>f. Settings<br>g. Tools</td>
+                        <td>Pass</td>
+                    </tr>
+                </tbody>
+            </table>
+        
+        
+        </h2>
+
+        <pre>
+<code>
+
+    <h2>PRACTICAL 2 Test Suit(Two Test Cases) and one alteration
+    </h2>
+
+    <pre>
+<code>
+package practical_exam;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Prac_002 {
+    static WebDriver driver;
+
+    public static void main(String[] args) throws InterruptedException {
+
+        // Creating a single driver instance for both websites
+        driver = new ChromeDriver();
+
+        // First website (Gmail)
+        driver.get("https://www.gmail.com");
+        driver.manage().window().maximize();
+        Thread.sleep(3000); // Consider using WebDriverWait instead
+
+        // Second website (mycontactform.com)
+        driver.get("https://www.mycontactform.com");
+        driver.manage().window().maximize();
+
+        // Locate elements
+        WebElement username = driver.findElement(By.id("user"));
+        WebElement password = driver.findElement(By.id("pass"));
+        WebElement login = driver.findElement(By.name("btnSubmit"));
+
+        // Enter credentials
+        username.sendKeys("tanish.parab@somaiya.edu");
+        password.sendKeys("your_password"); // Provide the actual password
+
+        // Click login
+        login.click();
+
+        try {
+            System.out.println("Test Case Pass");
+        } catch (Exception e) {
+            System.out.print("Test Case Failed");
+        } finally {
+            driver.quit();
+        }
+    }
+}
+
+</code>
+    </pre>
+
+</code>
+        </pre>
+        <h2>PRACTICAL 3 Write and test a program to log in to a specific web page.
+
+        </h2>
+
+        <pre>
+<code>
+package practical_exam;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Prac_02 {
+
+	public static void main(String[] args)  throws InterruptedException {
+		
+		ChromeDriver driver = new ChromeDriver();
+		
+		driver.get("https://www.mycontactform.com");
+		WebElement username = driver.findElement(By.id("user"));
+		WebElement password = driver.findElement(By.id("pass"));
+		WebElement login = driver.findElement(By.name("btnSubmit"));
+		username.sendKeys("guransh.suri@somaiya.edu");
+		password.sendKeys("123456");
+		login.click();
+		
+		try {
+			System.out.println("Test case pass");
+		} catch(Exception e){
+			System.out.println("Test case fail");
+		}finally {
+			driver.quit();
+		}
+			
+		}
+		
+	}
+
+</code>
+        </pre>
+
+        <h2>PRACTICAL 4 Install the Selenium server (Selenium RC) and demonstrate it using a script in Java/PHP.
+        </h2>
+        <h3>Add this Selenium extension</h3>
+        <code>
+            <a href=https://chromewebstore.google.com/detail/selenium-ide/mooikfkahbdckldjjndioackbalphokd target="_blank">Selenium chrome</a>
+        </code>
+        <h4>
+            open selenium IDLE > create new project > Name project > paste any website link in url section > click on rec (you will be redirected to that website and perform some operations ) > stop recording > run 
+        </h4>
+        <pre>
+<code>
+
+</code>
+        </pre>
+
+        <h2>PRACTICAL 5 To find LCM and GCD 
+        </h2>
+
+        <pre>
+<code>
+    <h2>HTML Code:</h2>
+    <pre>
+        <!-- Your HTML code here -->
+        &lt;!DOCTYPE html&gt;
+        &lt;html&gt;
+
+        &lt;head&gt;
+            &lt;title&gt;GCD&lt;/title&gt;
+            &lt;script&gt;
+                function gcd() {
+                    let x = parseInt(document.myform.n1.value);
+                    let y = parseInt(document.myform.n2.value);
+
+                    while (y !== 0) {
+                        let temp = y;
+                        y = x % y;
+                        x = temp;
+                    }
+
+                    document.myform.result.value = x;
+                }
+            &lt;/script&gt;
+        &lt;/head&gt;
+
+        &lt;body&gt;
+            &lt;form name="myform"&gt;
+                &lt;h3&gt;Enter Number 1&lt;/h3&gt;
+                &lt;input type="text" name="n1"&gt; &lt;br&gt;
+                &lt;h3&gt;Enter Number 2&lt;/h3&gt;
+                &lt;input type="text" name="n2"&gt; &lt;br&gt;
+
+                &lt;label for="rbutton"&gt;Calculate GCD&lt;/label&gt;
+                &lt;input type="button" value="Calculate" onclick="gcd()" id="rbutton"&gt;&lt;br&gt;
+
+                &lt;label for="result"&gt;Result&lt;/label&gt;
+                &lt;input type="text" name="result"&gt;
+            &lt;/form&gt;
+        &lt;/body&gt;
+
+        &lt;/html&gt;
+    </pre>
+
+    <h2>Java Code:</h2>
+    <pre>
+        // Your Java code here
+        package practical_exam;
+
+        import org.openqa.selenium.By;
+        import org.openqa.selenium.chrome.ChromeDriver;
+
+        public class prac_05 {
+            public static void main(String[] args) {
+                ChromeDriver driver = new ChromeDriver();
+                driver.get("C:\\Users\\Sandeep\\Downloads\\prac_05.html");
+                
+                driver.findElement(By.name("n1")).sendKeys("200");
+                driver.findElement(By.name("n2")).sendKeys("40");
+                driver.findElement(By.id("rbutton")).click();
+                
+                try {
+                    Thread.sleep(1000); // 1 second delay
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                
+                String result = driver.findElement(By.name("result")).getText();
+                System.out.println("Result is " + result);
+            }
+        }
+    </pre>
+
+</code>
+        </pre>
+        <h2>PRACTICAL 6 Counting Objects
+        </h2>
+
+        <pre>
+<code>
+package practical_exam;
+
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Prac_06 {
+public static void main(String[] args) {
+
+WebDriver driver=new ChromeDriver();
+driver.get("https://www.google.com");
+
+List <WebElement> mylist= driver.findElements(By.xpath("//a"));
+System.out.println("Number of object =" +mylist.size());
+}
+
+}
+</code>
+        </pre>
+        <h2>PRACTICAL 7 Count Radio Buttons and Check Boxes
+        </h2>
+
+        <pre>
+            <h3>java code</h3>
+
+<code>
+package practical_exam;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Prac_07 {
+
+    public static void main(String[] args) {
+        WebDriver driver = new ChromeDriver();
+        driver.get("C:\\Users\\Sandeep\\Downloads\\gcd.html");
+        int chk = 0;
+        int unchk = 0;
+        int rchk = 0;
+        int runchk = 0;
+
+        // Checkboxes
+        for (int i = 1; i <= 3; i++) {
+            WebElement checkbox = driver.findElement(By.xpath("(//input[@type='checkbox'])[" + i + "]"));
+            if (checkbox.isSelected() ) {
+                chk++;
+            } else {
+                unchk++;
+            }
+        }
+
+        // Radio buttons
+        for (int i = 1; i <= 3; i++) {
+            WebElement radioButton = driver.findElement(By.xpath("(//input[@type='radio'])[" + i + "]"));
+            if (radioButton.isSelected()) {
+                rchk++;
+            } else {
+                runchk++;
+            }
+        }
+
+        System.out.println("Checked Checkboxes are: " + chk);
+        System.out.println("Unchecked Checkboxes are: " + unchk);
+        System.out.println("Checked Radio Buttons are: " + rchk);
+        System.out.println("Unchecked Radio Buttons are: " + runchk);
+
+        // Close the browser
+      driver.quit();
+    }
+}
+
+</code>
+<h2>HTML Code</h2>
+<pre>
+    &lt;!DOCTYPE html&gt;
+    &lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Radiobuttons&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+
+    &lt;form&gt;
+        &lt;h2&gt;Radiobutton Test&lt;/h2&gt;
+        &lt;input type="radio" name="gender" value="Male" checked&gt;
+        &lt;br&gt;
+        &lt;input type="radio" name="gender" value="Female"&gt;
+        &lt;br&gt;
+        &lt;br&gt;
+        &lt;h2&gt;Checkbox test&lt;/h2&gt;
+        &lt;input type="checkbox" checked="checked" name="lang" value="C"&gt;
+        &lt;br&gt;
+        &lt;input type="checkbox" name="lang" value="Java"&gt;
+        &lt;br&gt;
+        &lt;input type="checkbox" checked="checked" name="lang" value="python"&gt;
+        &lt;br&gt;
+        &lt;br&gt;
+        &lt;input type="submit" value="submit"&gt;
+    &lt;/form&gt;
+
+    &lt;/body&gt;
+    &lt;/html&gt;
+</pre>
+        <h2>PRACTICAL 8 Excel Record Updation In Excel
+        </h2>
+
+        <pre>
+<code>
+
+package practical51;
+import java.io.File;
+import java.io.IOException;
+import java.util.Locale;
+import jxl.CellView;
+import jxl.Workbook;
+import jxl.WorkbookSettings;
+import jxl.format.UnderlineStyle;
+import jxl.write.Formula;
+import jxl.write.Label;
+import jxl.write.Number;
+import jxl.write.WritableCellFormat;
+import jxl.write.WritableFont;
+import jxl.write.WritableWorkbook;
+import jxl.write.WritableSheet;
+import jxl.write.WriteException;
+import jxl.write.biff.RowsExceededException;
+public class StudentRecord {
+private WritableCellFormat timeBoldUnderline;
+private WritableCellFormat times;
+private String inputFile;
+public void setOutputFile(String inputFile) {
+this.inputFile = inputFile;
+}
+public void write() throws IOException, WriteException {
+File file = new File(inputFile);
+WorkbookSettings wbSettings = new WorkbookSettings();
+wbSettings.setLocale(new Locale("en","EN"));
+WritableWorkbook workbook = Workbook.createWorkbook(file,
+wbSettings);
+workbook.createSheet("Report", 0);
+WritableSheet excelSheet = workbook.getSheet(0);
+createLabel(excelSheet);
+createContent(excelSheet);
+workbook.write();
+workbook.close();
+}
+private void createLabel(WritableSheet sheet) throws WriteException {
+WritableFont time10pt = new WritableFont(WritableFont.TIMES, 10);
+times = new WritableCellFormat(time10pt);
+times.setWrap(true);
+WritableFont times10ptBoldUnderline = new
+WritableFont(WritableFont.TIMES , 10 , WritableFont.BOLD , false,
+UnderlineStyle.SINGLE);
+timeBoldUnderline = new WritableCellFormat(times10ptBoldUnderline);
+timeBoldUnderline.setWrap(true);
+CellView cv = new CellView();
+cv.setFormat(times);
+cv.setFormat(timeBoldUnderline);
+addCaption(sheet, 0,0, "Student Name");
+addCaption(sheet, 1,0, "Subject 1");
+addCaption(sheet, 2,0, "Subject 2");
+addCaption(sheet, 3,0, "Subject 3");
+}
+private void createContent(WritableSheet sheet) throws WriteException,
+RowsExceededException {
+for (int i = 1; i<10;i++) {
+addLabel(sheet, 0, i, "Student " +i);
+addNumber(sheet, 1, i, ((i*i)+10));
+addNumber(sheet, 2, i, ((i*i)+4));
+addNumber(sheet, 3, i, ((i*i)+3));
+}
+}
+private void addCaption(WritableSheet sheet, int column, int row, String s)
+throws RowsExceededException, WriteException {
+Label label;
+label = new Label(column, row, s, timeBoldUnderline);
+sheet.addCell(label);
+}
+private void addNumber(WritableSheet sheet, int column, int row, Integer
+integer)
+throws RowsExceededException, WriteException {
+Number number;
+number = new Number(column, row, integer, times);
+sheet.addCell(number);
+}
+private void addLabel(WritableSheet sheet, int column, int row, String s)
+throws RowsExceededException, WriteException {
+Label label;
+label = new Label(column, row, s, times);
+sheet.addCell(label);
+}
+public static void main(String[] args) throws WriteException, IOException {
+StudentRecord test = new StudentRecord();
+test.setOutputFile("C:\\Users\\Sandeep\\eclipse-workspace\\excel\\student1.xls.xls");
+test.write();
+System.out.println("Please check the result fileunder C:\\excel");
+}
+}
+
+
+</code>
+        </pre>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2023 ALL THE BEST</p>
+    </footer>
+
+</body>
+</html>
